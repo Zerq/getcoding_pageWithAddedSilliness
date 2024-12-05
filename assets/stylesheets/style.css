@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* remove default spacing */
+/* force styling of type through styling, rather than elements */
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* dark mode user-agent-styles */
+
+html {
+  color-scheme: dark light;
+}
+
+/* min body height */
+
+body {
+  min-height: 100vh;
+}
+
+/* responsive images/videos */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+:root {
+  font-family: Roboto;
+
+
+  --SurroundingBackgroundColorMobile: white;
+  --SurroundingBackgroundColor:#eee;
+  --MainContentAreaColor: white;
+  --MainContentAreaBackgroundColor: #587291;
+  --NavigationFieldBackgroundColor: white;
+  --ButtonBackgroundColor: #582e48;
+  --ButtonColor: white;
+  --LinkColor: black;
+  --Flame4: red;
+  --Flame3: #ff6600;
+  --Flame2: rgb(255, 196, 0);
+  --Flame1: white;
+  --FunnyFunctionsColor: gray;
+  --EffectTextMultiplierX: 2px;
+  --EffectTextMultiplierY: 6px;
+}
+
+html {
+  background-color: var(--SurroundingBackgroundColor);
+}
+
+@font-face {
+  font-family: "RunicalScript";
+  src: url("../font/RunicalScript.woff") format("woff"),
+    url("../font/RunicalScript.woff2") format("woff2"),
+    url("../font/RunicalScript.ttf") format("truetype"),
+    url("../font/RunicalScript.otf") format("opentype");
+}
+
+
+
+.invisible {
+  position: absolute !important; /* Outside the DOM flow */
+  height: 1px; width: 1px; /* Nearly collapsed */
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE 7+ only support clip without commas */
+  clip: rect(1px, 1px, 1px, 1px); /* All other browsers */
+}
+
+div.wrapper {
+
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+
+
+header {
+  position: relative;
+}
+
+nav {
+  margin: 2rem;
+  padding: 1rem;
+  background-color: var(--NavigationFieldBackgroundColor);
+  position: absolute;
+  width: calc(100% - 4rem);
+  margin-top: 3rem;
+}
+
+footer ul {
+  background-color: var(--NavigationFieldBackgroundColor);
+}
+
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+
+
+}
+
+.LinkPanel a {
+  list-style: none;
+  width: fit-content;
+  font-size: larger;
+  color: var(--LinkColor);
+  text-decoration: none;
+}
+
+
+nav a:hover {
+  cursor: pointer;
+}
+
+
+
+
+main {
+  background-color: var(--MainContentAreaBackgroundColor);
+  color: --MainContentAreaColor;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  min-height: 30rem;
+
+}
+
+main div {
+  width: fit-content;
+  flex: 0;
+  text-align: center;
+  font-size: x-large;
+}
+
+
+
+.button {
+  background-color: var(--ButtonBackgroundColor);
+  color: var(--ButtonColor);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  /* margin: 1rem; */
+  text-decoration: none;
+
+
+  margin: 1rem;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  background-color: white;
+  padding: 2rem;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1rem;
+}
+
+
+
+footer li {
+  width: fit-content;
+}
+
+
+.funny {
+  list-style: none;
+  position: absolute;
+  cursor: pointer;
+  font-size: x-small;
+  line-height: 2rem;
+  color: var(--FunnyFunctionsColor);
+  padding: 1rem;
+}
+
+
+
+
+
+
+
+dialog {
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: black 1px 1px 10px 0px;
+  border: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10%;
+  margin-inline: auto;
+  width: fit-content;
+
+}
+
+dialog progress {
+  width: 100%;
+}
+
+dialog>div {
+  display: flex;
+  justify-content: center;
+}
+
+dialog div div.padded {
+  padding: 2em;
+}
+
+dialog h3 {
+
+  font-size: xx-large;
+
+}
+
+
+
+@keyframes bobing {
+  from {
+    color: var(--Flame1);
+    transform: translateY(1rem);
+    text-shadow: var(--Flame2) 1.5px -1.5px, var(--Flame3) 3px -3px, var(--Flame4) 4.5px -4.5px;
+    text-shadow:
+    var(--Flame2)  calc((1 * var(--EffectTextMultiplierX)) * -1)  calc((1 * var(--EffectTextMultiplierY)) * -1), 
+    var(--Flame3)  calc((2 * var(--EffectTextMultiplierX)) * -1)  calc((2 * var(--EffectTextMultiplierY)) * -1), 
+    var(--Flame4)  calc((3 * var(--EffectTextMultiplierX)) * -1)  calc((3 * var(--EffectTextMultiplierY)) * -1);
+  }
+
+  to {
+    color: var(--Flame1);
+    transform: translateY(-1rem);
+    text-shadow:
+     var(--Flame2)  calc(1 * var(--EffectTextMultiplierX))  calc(1 * var(--EffectTextMultiplierY)), 
+     var(--Flame3)  calc(2 * var(--EffectTextMultiplierX))  calc(2 * var(--EffectTextMultiplierY)), 
+     var(--Flame4)  calc(3 * var(--EffectTextMultiplierX))  calc(3 * var(--EffectTextMultiplierY));
+ 
+  }
+}
+
+#SillyText {
+  background-color: black;
+  letter-spacing: 1rem;
+  padding: 6rem;
+}
+
+#SillyText h3 span {
+  display: inline-block;
+  font-size: xxx-large;
+  color: transparent);
+  font-weight: bolder;
+  animation: 2s ease-in-out 1s infinite alternate bobing;
+}
+
+
+@media only screen and (orientation: Portrait) {
+
+  nav ul,
+  footer ul {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  a.button {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  main {
+    min-height: 20rem;
+  }
+
+  iv.wrapper {
+
+    max-width: unset;
+
+  }
+
+
+  :root {
+    font-size: x-large;
+  }
+
+  nav {
+    position: relative;
+
+  }
+
+  .funny {
+    display: none;
+  }
+  
+  #CoverImage{
+    width: 100%;
+  }
+  html {
+    background-color: var(--SurroundingBackgroundColorMobile);
+  }
+}
