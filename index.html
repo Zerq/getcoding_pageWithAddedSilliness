@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./assets/stylesheets/style.css" />
+    <title class="Translatable">GET CODING</title>
+    <script defer>
+        class Thingy {
+            constructor(){
+                this.messageBox = document.querySelector("#messageBox");
+                this.messageBoxButton = document.querySelector("#messageBox button.button");
+                this.messageBoxH3 = document.querySelector("#messageBox h3");
+                this.messageBoxP = document.querySelector("#messageBox p");
+                this.messageBoxButton.addEventListener("click", () => {
+                    messageBox.close();
+                });
+            }
+
+            translateText(text) {
+                return text.toUpperCase().replaceAll("S", "Z").replaceAll("F", "PH").replaceAll("CH", "ZH").replaceAll("C", "Q").replaceAll("K", "Q").replaceAll("V", "W");
+            }
+
+
+
+            parseNodeTree(childNode) {
+                if (childNode.nodeName === "#text") {
+                    childNode.nodeValue = this.translateText(childNode.nodeValue);
+                }
+
+                if (childNode.hasAttribute?.("alt")) {
+                    childNode.setAttribute("alt", this.translateText(childNode.getAttribute("alt")));
+                }
+
+
+                for (let i = 0; i < childNode.childNodes.length; i++) {
+                    this.parseNodeTree(childNode.childNodes[i]);
+                }
+            }
+
+            autoTranslate() {
+
+                document.getElementById("CoverImage").setAttribute("src", "./assets/images/GETQODING_cutdown.png");
+                document.documentElement.style.fontFamily = "RunicalScript";
+                document.documentElement.style.fontSizeAdjust = "0.8";
+                document.documentElement.setAttribute("lang", "zq");
+                this.parseNodeTree(document.getRootNode());
+            }
+
+
+            WriteSillyText(text) {
+                if (document.documentElement.getAttribute("lang") === "zq") {
+                    text = this.translateText(text);
+                }
+
+                const sillyText = document.querySelector("#SillyText h3");
+                sillyText.innerHTML = "";
+                let delay = 0;
+
+                text.split("").forEach(char => {
+                    const span = document.createElement("span");
+                    span.style.animationDelay = delay + "ms";
+                    span.innerText = char;
+                    if (char === "_") {
+                        span.style.visibility = "hidden";
+                    }
+                    delay += 300;
+                    sillyText.appendChild(span);
+                });
+                document.querySelector("#SillyText").showModal();
+
+            }
+
+
+            transferToRussianMafia(){
+                    document.querySelector(".transferingToRussianMafia").showModal();
+                    setTimeout(() => {
+                        document.querySelector(".transferingToRussianMafia").close();
+                    }, 4000);
+                }
+
+            ShowGDPR(){
+                    document.querySelector("dialog.IlligalGDPRDialog").showModal();
+
+                    document.querySelector("#acceptEvilGDPRImplementation").addEventListener("click", () => {
+                        document.querySelector("dialog.IlligalGDPRDialog").close();
+                        this.transferToRussianMafia();
+                    });
+
+                    document.querySelector("#rejectEvilGDPRImplementation").addEventListener("click", () => {
+                        //alert("the rejection button is undergoing maintenace at present please try again later...");
+
+                        this.showMessageBox("Reject all broken", "The reject button is undergoing mainenance and is not avalible at the moment", "Ok");
+
+                    });
+
+                    let rotation = 0;
+                    document.querySelector("div.evil").addEventListener("mouseenter", () => {
+                        rotation += 180;
+                        document.querySelector("div#ButtonWrapper").style.transition = "transform 500ms";
+                        document.querySelector("div#ButtonWrapper").style.transform = `rotate(${rotation}deg)`;
+                        document.querySelectorAll("div#ButtonWrapper button").forEach(n => n.style.transition = "transform 500ms");
+                        document.querySelectorAll("div#ButtonWrapper button").forEach(n => n.style.transform = `rotate(-${rotation}deg)`);
+                    });
+            }
+
+            showMessageBox(title, message, btn){
+                this.messageBoxButton.textContent = btn;
+                this.messageBoxH3.textContent = title;
+                this.messageBoxP.textContent = message;
+                this.messageBox.showModal();
+            }
+
+            
+
+
+        }
+
+        document.addEventListener("readystatechange", e => {
+
+         
+        
+            let thingy = new Thingy();
+
+            if (document.readyState === "complete") {
+                document.querySelector("#translate").addEventListener("click", () => {
+                    thingy.autoTranslate();
+                });
+
+                document.querySelector("#invert").addEventListener("click", () => {
+                    document.documentElement.style.filter = "invert()";
+                });
+
+                document.querySelector("#somethingElse").addEventListener("click", () => {
+                    thingy.WriteSillyText("Meow!_=^-^=")
+                });
+
+
+                document.querySelector("#sillyGdrpParody").addEventListener("click", ()=> {
+                    thingy.ShowGDPR();
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <ul class="funny">
+        <li id="translate">Grougle translate</li>
+        <li id="invert">Invert</li>
+        <li id="somethingElse">FunText</li>
+        <li id="sillyGdrpParody">GDPR dialog parody</li>
+    </ul>
+    <div class="wrapper">
+        <header>
+            <nav>
+                <ul class="LinkPanel">
+                    <li>
+                        <a href="#learntocode">Learn to code</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#contactUs">Contact us</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <figrue>
+                <img  id="CoverImage" src="./assets/images/getcoding_cutdown.png"
+                    alt="picture of coding magazine with cartoon figure depicting a mustashed manin a piphelmet with a antena, and a woman with glasses and a camera and a dog scratching itself it as the following text." />
+                <figcaption class="invisible"><!--seams to work with the built in linux screen reader not sure if this is the ideal approach.-->
+                    <h1 >
+                        QGet Coding!
+                    </h1>
+                    <p>Learn HTML, CSS, Javascript and build a website, app and game</p>
+                    <p>Get tips and support from <strong>Young Rewrided state</strong> at
+                        <a href="www.getcodingkids.com">www.getcodingkids.com</a>
+                    </p>
+                </figcaption>
+            </figrue>
+
+        </header>
+        <main>
+            <div style="color: white;    font-size: x-large; margin:auto;">
+                <h2>
+                    Do You wanna learn how to make a website?
+                </h2>
+                <a href="#readmore" class="button lineHight5 Translatable">Read more</a>
+
+            </div>
+
+
+        </main>
+        <footer>
+            <ul class="LinkPanel">
+                <li></li><a href="#about">About us</a></li>
+                <li><a href="#thecompany">The company</a></li>
+                <li><a href="#ourvalues">Our values</a></li>
+            </ul>
+        </footer>
+        </nav>
+
+
+        <dialog class="IlligalGDPRDialog">
+            <h3>
+                Highly Dubious GDPR dialog.
+            </h3>
+            <p>
+                Do you accept us selling all your private data to the Russian maffia among many others?
+            </p>
+
+            <div id="ButtonWrapper">
+                <div class="padded ">
+                    <button class="button" id="acceptEvilGDPRImplementation">Accept All</button>
+                </div>
+                <div class="padded evil">
+                    <button class="button" id="rejectEvilGDPRImplementation">Reject All</button>
+                </div>
+            </div>
+
+
+        </dialog>
+
+        <dialog class="transferingToRussianMafia">
+            <h3>
+                Thank you!
+            </h3>
+            <p>
+                Sending your personal data to Russian mafia...
+            </p>
+            <progress>
+
+            </progress>
+
+        </dialog>
+
+
+        <dialog id="messageBox">
+            <h3>
+            </h3>
+            <p>
+            </p>
+            <button class="button"></button>
+        </dialog>
+
+
+
+        <dialog id="SillyText">
+            <h3>
+            </h3>
+        </dialog>
+
+
+</body>
+</div>
+
+</html>
